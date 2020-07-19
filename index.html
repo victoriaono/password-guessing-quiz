@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Welcome</title>
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Fontdiner+Swanky' rel="stylesheet">
+<!-- imported google fonts-->
+<link href="CSS/LF_OV_PasswordGuessingGame.css" rel="stylesheet">
+<!-- reference to css file-->
+</head>
+<body>
+
+<h1>Hogwarts School of Witchcraft and Wizardry</h1>
+
+<div class="story">
+<!-- the intro of our password game-->
+<p>I remember it was a bright Sunday afternoon in Brighton, London after it had rained about an hour ago. I had just left the Leaky Cauldron, a cozy cafe that I visit quite often when I need to focus on my school assignments.<br>
+The time on my wrist watch showed 3:18 PM as I remembered that I needed to be home at 3:30 to babysit my nephew and niece, who were only 2 years old.<br>
+I started to walk a tad bit faster and arrived at my porch within minutes. As I approached my front door, I saw a tan envelope with my name written in black ink and with a bright red H stamp seal.<br>
+I wondered why this letter would be sent to me and this is what it read… </p>
+</div>
+
+<div class="float">
+<!-- div of floating scroll on left side of page-->
+<p style="padding-top:50px;padding-right:80px;">Dear Computer Scientist,<br>We are pleased to inform you that you have a place at Hogwarts School of Witchcraft and Wizardry. <br>Below find which house you would like to be sorted in.</p>
+		<p>Yours sincerely,<br>Minerva McGonagall<br>Deputy Headmistress</p>
+		<!-- Acceptance letter from Hogwarts to the computer scientist-->
+		<a href="#main" id="Gryffindor" onclick="background(this.id);"><img src="Images/housesA.png" alt="Gryffindor House" style="width:100px;height:144px;"></a>
+		<a href="#main" id="Hufflepuff" onclick="background(this.id)"><img src="Images/housesC.png" alt="Hufflepuff House" style="width:100px;height:144px;"></a>
+		<a href="#main" id="Ravenclaw" onclick="background(this.id)"><img src="Images/housesB.png" alt="Ravenclaw House" style="width:100px;height:144px;"></a>
+		<a href="#main" id="Slytherin" onclick="background(this.id)"><img src="Images/housesD.png" alt="Slytherin House" style="width:100px;height:144px;"></a>
+		<!-- links with the attribute of an image of a Hogwarts house. Each leads to a different themed background game. Once the image is onCick, a background function in js is called. -->
+</div>
+
+<!-- the code below is STANDARD because it alters based on the House that user clicks, js was used to change innter HTML-->
+<div id="main">
+<div class="notice">
+<p id="message">Welcome to the daring and courageous Gryffindor House! You’ll make friends shortly once you unlock the password to the Common Room, such as the famous Harry Potter, Hermione Granger, and Ron Weasley.</p>
+<p>Rules: Here is what you have to do to unlock the Common Room: The password is a 4 digit number from 1000 to 9999. You will have to guess the correct password in 5 tries based on the hints provided to you, if you are incapable of doing so, you will not be able to reach the Common Room. Good luck!!</p>
+<!-- innerHTML of if of "message" will alter based on user click. other messages are stored in JS file. but the rules will stay the same-->
+</div>
+
+<div class="input">
+<!-- div where the user plays the game-->
+<label for="guessInput">Guess: </label><input type="text" id="guess" onkeydown = "if (event.keyCode == 13) {document.getElementById('submit').click()}"><br>
+<!-- event.keyCode allows user to enter guesses by clicking the enter button instead of submit-->
+<input type="submit" id="submit" onclick="checkGuess();">
+<!-- submit button used to call checkGuess function to determine if the user input is correct-->
+<!-- Table for organized display of previous guesses and hints -->
+<table style="margin-left:auto;margin-right:auto;">
+<tr>
+	<th>Guesses</th>
+	<!-- table headers displayed at the top of the table-->
+	<th>Hints</th>
+</tr>
+<tr>
+	<td class="previousGuesses para" style="border-left:none;text-align:center;"></td>
+	<td class="hints para"></td>
+</tr>
+</table>
+</div>
+<!-- Menu of statistics -->
+<div class="stats">
+<button class="accordion">Times Played</button>
+<div class="panel">
+  <p class="gameNumber">Times played: 0</p>
+</div>
+
+<button class="accordion">Wins and Losses</button>
+<div class="panel">
+  <p class="wins">Wins: 0</p>
+  <p class="losses">Losses: 0</p>
+</div>
+
+<button class="accordion">Statistics</button>
+<div class="panel">
+  <p class="average">Average # of hints used: 0</p>
+  <p class="median">Median # of hints used: 0</p>
+</div>
+</div>
+</div>
+
+<div class="buttons">
+
+<!-- Div for if user won the game -->
+<div id="congrats">
+<img src="Images/congrats.gif" alt="congrats">
+<p style="font-size:150%;color:#4286f4;text-shadow:1px 1px 2px black;">Congratulations! You guessed the right password.<br>
+Now set forth on your journey to Hogwarts with your new friends!</p>
+</div>
+
+<!-- Div for if user lost the game -->
+<div id="gameOver">
+<img src="Images/shrug.gif" alt="bummer">
+<p style="font-size:180%;color:#f4c141;text-shadow:1px 1px 2px black;">Bummer!</p>
+<p style="font-size:130%;color:#f4c141;text-shadow:1px 1px 2px black;">But no worries, just wait a little bit and someone at the door will tell you the password.</p>
+</div>
+
+<!-- Asks user if they want to restart the game -->
+<p>Would you like to guess the password from another house?</p>
+<button id="restart">Yes</button>
+<button id="quit">No</button>
+
+</div>
+
+<!-- Div that displays at the end if user quits the game -->
+<div class="end">
+<h1 style="margin-bottom:0px;margin-top:10px;">Welcome to Hogwarts</h1>
+<img src="Images/welcome.gif" alt="welcome">
+</div>
+
+<script type="text/JavaScript" src="JS/LF_OV_PasswordGuessingGame.js"></script>
+<script> // for when user clicks on each menu to display stats
+var acc = document.getElementsByClassName("accordion");
+for (var i=0;i<acc.length;i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
+}
+</script>
+</body>
+</html>
