@@ -50,7 +50,7 @@ function divisibility(userGuess) {	// determines the passwords divisiblity using
 	hintsP.innerHTML += "The number is divisible by " + numberPhrases[randomIndex] + "<br>";
 }
 // array of phrases that represent numbers from 1-9
-var numPhrases = ['the number of the book "Harry Potter and the Sorcerer&#39s Stone"','the number of the book "Harry Potter and the Chamber of Secrets"','the total number of children Beyonce will have soon','the number of quarters that make up a dollar','a number in French that sort of rhymes with "bank"','the last month of the school year','the number of Harry Potter books','the number of Harry Potter films','the number of digits in an OSIS'];
+var numPhrases = ['the number of the book "Harry Potter and the Sorcerer&#39s Stone"','the number of the book "Harry Potter and the Chamber of Secrets"','the number of curricula KWK offers','the number of quarters that make up a dollar','a number in French that sort of rhymes with "bank"','the number of faces in a die','the number of Harry Potter books','the number of Harry Potter films','the number that Pluto would have been as a planet'];
 function firstDigit(userGuess) {	// hint used to tell user the first digit of password
 	var first = Number(password.toString()[0]);	// changes the password into a string and returns index 0, aka first digit
 	var firstPhrase = numPhrases[first-1]; // takes the first digit and subtracts one to receive the appropriate index number hint 
@@ -96,7 +96,7 @@ function correctNums(userGuess) {
 }
 function second(userGuess) {
 	var second = Number(password.toString()[1]);
-	var userSecond = Number(userGuess.toString()[2]);	
+	var userSecond = Number(userGuess.toString()[1]);	
 	second = Math.pow(second+userSecond,2); // takes the square of the sum of real digit and user's digit
 	hintsP.innerHTML += "The square of the sum of your second digit and the actual second digit is " + second + "<br>"; 
 }
